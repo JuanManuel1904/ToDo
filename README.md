@@ -1,22 +1,22 @@
-ToDo App - Task Manager
+# ToDo App - Task Manager
 
 A task list (ToDo) application built with React, JavaScript, and Tailwind CSS.
 
 Key Features:
 
-✅ Intuitive Interface:
+# ✅ Intuitive Interface:
 Tasks displayed as rectangular cards.
 Side form to add new tasks (title, description, and priority).
 Multi-select checkboxes for batch deletion.
 
-🔄 Detailed Management:
+# 🔄 Detailed Management:
 Clicking a task opens a modal with full details.
 Buttons to edit, delete, or cancel (inside the modal).
 
-🎨 Responsive Design:
+# 🎨 Responsive Design:
 Styled with Tailwind CSS for a clean, adaptable experience.
 
-🔧 Technologies:
+# 🔧 Technologies:
 React (hooks, local state).
 JavaScript ES6+.
 Tailwind CSS for styling.
