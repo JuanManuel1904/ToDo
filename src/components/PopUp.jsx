@@ -7,7 +7,20 @@ const PopUp = ({ task, onClose, onDelete }) => {
       "
       >
         <div className="bg-slate-700 rounded-lg mb-4 p-4">
-          <h1 className="text-xl font-bold mb-2">Título</h1>
+          <div className="flex justify-between items-center">
+            <h1 className="text-xl font-bold mb-2">Título</h1>
+            <span
+              className={`text-xl font-bold px-2 rounded-full  ${
+                task.priority === 'Urgente'
+                  ? 'bg-rose-500/90'
+                  : task.priority === 'Importante'
+                    ? 'bg-orange-500/90'
+                    : 'bg-green-500/90'
+              }`}
+            >
+              {task.priority}
+            </span>
+          </div>
           <h1 className="text-xl font-base mb-2 mx-4 ">{task.title}</h1>
         </div>
         <div className="bg-slate-700 rounded-lg p-4 h-54">
