@@ -1,24 +1,43 @@
-# ToDo App - Task Manager
+# 📝 ToDo App - Task Manager  
 
-A task list (ToDo) application built with React, JavaScript, and Tailwind CSS.
+*A sleek task management application built with React, JavaScript, and Tailwind CSS.*  
 
-Key Features:
+---
 
-# ✅ Intuitive Interface:
-Tasks displayed as rectangular cards.
-Side form to add new tasks (title, description, and priority).
-Multi-select checkboxes for batch deletion.
+## ✨ Features  
 
-# 🔄 Detailed Management:
-Clicking a task opens a modal with full details.
-Buttons to edit, delete, or cancel (inside the modal).
+### 🖥️ **Intuitive Interface**  
+- Tasks displayed as **rectangular cards** for clear visibility.  
+- **Side panel form** to add new tasks (title, description, priority).  
+- **Batch delete** with multi-select checkboxes.  
 
-# 🎨 Responsive Design:
-Styled with Tailwind CSS for a clean, adaptable experience.
+### 🔍 **Detailed Task Management**  
+- Click any task to open a **detailed modal** (full description + priority).  
+- Modal actions: **Edit** ✏️, **Delete** 🗑️, or **Cancel** ❌.  
 
-# 🔧 Technologies:
-React (hooks, local state).
-JavaScript ES6+.
-Tailwind CSS for styling.
+### 🌈 **Responsive Design**  
+- Fully mobile-friendly with **Tailwind CSS**.  
+- Clean, minimalist UI.  
 
-Perfect for organizing daily tasks with simple yet effective functionality.
+---
+
+## 🛠️ Technologies  
+- **React** (Hooks, State Management)  
+- **JavaScript ES6+**  
+- **Tailwind CSS** (Styling)  
+
+---
+
+## 🚀 Perfect For...  
+Organizing daily tasks with **zero fuss** and **maximum efficiency**.  
+
+---
+
+## 🔮 Future Improvements  
+- `localStorage` persistence.  
+- Priority filters/search.  
+- Dark mode.  
+
+---
+
+![Preview](https://via.placeholder.com/800x400?text=ToDo+App+Preview) *← Replace with actual screenshot*  
