@@ -57,6 +57,7 @@ const TaskForm = ({ toggleForm, addTask }) => {
 
             <textarea
               type="text"
+              maxLength={300}
               value={description}
               onChange={(e) => {
                 setDescription(e.target.value);

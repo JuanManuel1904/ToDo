@@ -34,7 +34,13 @@ const Home = () => {
     console.log(taskList);
   };
 
-  const deleteTask = () => {
+  const individualDelete = () => {
+    setTaskList(taskList.filter((task) => task.title !== infoModal.title));
+    setInfoModal(null);
+    setPopUp(false);
+  };
+
+  const multipleDelete = () => {
     const newtaskList = taskList.filter(
       (task) => !deleteTaskList.includes(task.title)
     );
@@ -88,17 +94,18 @@ const Home = () => {
             <PopUp
               task={infoModal}
               open={popUp}
+              onDelete={individualDelete}
               onClose={() => {
                 (setPopUp(false), setInfoModal(null));
               }}
-              deleteTask={deleteTask}
             />
           </div>
         )}
-        <header className="flex justify-center">
-          <h1 className="text-gray-400 text-8xl font-semibold font-sans my-8 text-shadow-lg text-shadow-gray-800">
-            To Do
+        <header className="flex-row place-items-center">
+          <h1 className="text-gray-400 text-8xl font-semibold font-sans mt-8 text-shadow-lg text-shadow-gray-800">
+            Do It
           </h1>
+          <h1 className="text-gray-200 text-lg">We remember for you</h1>
         </header>
         <div className={`${popUp ? 'blur-lg opacity-50 ' : ''}`}>
           <div className="gap-4 min-h-16">
@@ -109,7 +116,7 @@ const Home = () => {
                     color="rose"
                     className="w-40"
                     text="Eliminar"
-                    onClick={deleteTask}
+                    onClick={multipleDelete}
                   />
                   <Button
                     color="blue"
