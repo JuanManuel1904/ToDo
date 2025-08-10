@@ -1,4 +1,7 @@
-const Button = ({ color, text, onClick, type }) => {
+const Button = ({ color, text, onClick, type, className = '' }) => {
+  const baseClasses =
+    'rounded-lg px-4 py-2 cursor-pointer transition duration-300 ease-in-out transform hover:scale-105 text-white text-sm sm:text-base font-semibold';
+
   const colorClasses = {
     rose: 'bg-rose-500 hover:bg-rose-400',
     blue: 'bg-blue-500 hover:bg-blue-400',
@@ -7,7 +10,7 @@ const Button = ({ color, text, onClick, type }) => {
 
   return (
     <button
-      className={`${colorClasses[color]}-500 rounded-lg w-28 cursor-pointer transition delay-50 duration-300 ease-in-out hover:scale-110 hover:bg-${color}-400`}
+      className={`${baseClasses} ${colorClasses[color]} ${className}`}
       onClick={onClick}
       type={type}
     >

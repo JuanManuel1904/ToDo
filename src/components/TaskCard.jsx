@@ -7,46 +7,45 @@ const TaskCard = ({
 }) => {
   return (
     <div
-      className="bg-slate-600 p-4 rounded-lg text-white shadow-md cursor-pointer hover:scale-105 transition delay-50 duration-300 ease-in-out relative"
+      className="bg-slate-600 p-4 rounded-lg text-white shadow-md cursor-pointer 
+                 hover:scale-105 sm:hover:scale-105 transition duration-300 ease-in-out 
+                 relative w-full min-h-[8rem] flex flex-col"
       onClick={onClick}
     >
-      {/* Checkbox fijo arriba derecha */}
+      {/* Checkbox */}
       {deleteSelection && (
         <input
           type="checkbox"
           checked={deleteTaskList.includes(task.title)}
           onChange={() => addTaskDeleteList(task.title)}
           onClick={(e) => e.stopPropagation()}
-          className="absolute top-2 left-2"
+          className="absolute top-2 left-2 w-4 h-4 sm:w-5 sm:h-5"
         />
       )}
 
-      {/* Contenido en columna con prioridad al fondo */}
-      <div className="flex flex-col h-full">
-        <h1 className="text-bold text-2xl max-w-full truncate">{task.title}</h1>
+      {/* Contenido */}
+      <div className="flex flex-col h-full gap-2">
+        {/* Título */}
+        <h1 className="font-bold text-lg sm:text-xl md:text-2xl truncate">
+          {task.title}
+        </h1>
 
-        <p
-          className="break-words"
-          style={{
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
-          }}
-        >
+        {/* Descripción */}
+        <p className="break-words line-clamp-2 text-sm sm:text-base">
           {task.description}
         </p>
 
-        {/* Span con prioridad al fondo */}
+        {/* Prioridad */}
         <span
-          className={`inline-block mt-auto px-3 py-1 rounded-full text-sm font-semibold w-1/2
-            ${
-              task.priority === 'Urgente'
-                ? 'bg-rose-500/90'
-                : task.priority === 'Importante'
-                  ? 'bg-orange-500/90'
-                  : 'bg-green-500/90'
-            }`}
+          className={`mt-auto px-3 py-1 rounded-full text-xs sm:text-sm font-semibold 
+                      w-full sm:w-1/2 text-center
+                      ${
+                        task.priority === 'Urgente'
+                          ? 'bg-rose-500/90'
+                          : task.priority === 'Importante'
+                            ? 'bg-orange-500/90'
+                            : 'bg-green-500/90'
+                      }`}
         >
           {task.priority}
         </span>
