@@ -141,7 +141,6 @@ const Home = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row flex-grow gap-4">
-          {/* Lista de tareas */}
           <main className="w-full mx-auto space-y-6 py-4">
             <section className="bg-slate-700 p-4 sm:p-6 rounded-lg shadow-md h-full w-full">
               {taskList.length === 0 ? (
@@ -168,17 +167,14 @@ const Home = () => {
             </section>
           </main>
 
-          {/* Formulario */}
           {showForm && (
             <>
-              {/* Modal en móvil */}
               <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4 lg:hidden">
                 <div className="bg-slate-800 rounded-lg p-4 w-full max-w-md">
                   <TaskForm toggleForm={toggleForm} addTask={addTask} />
                 </div>
               </div>
 
-              {/* Panel lateral en desktop */}
               <div className="hidden lg:block w-full lg:w-1/3 py-4">
                 <TaskForm toggleForm={toggleForm} addTask={addTask} />
               </div>

@@ -25,7 +25,6 @@ const TaskForm = ({ toggleForm, addTask }) => {
         Nueva Tarea
       </h2>
 
-      {/* Título */}
       <input
         type="text"
         placeholder="Título"
@@ -34,7 +33,6 @@ const TaskForm = ({ toggleForm, addTask }) => {
         className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400"
       />
 
-      {/* Descripción */}
       <textarea
         placeholder="Descripción"
         value={description}
@@ -42,7 +40,6 @@ const TaskForm = ({ toggleForm, addTask }) => {
         className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400 min-h-[6rem]"
       />
 
-      {/* Prioridad (colores y nombres originales) */}
       <select
         onChange={(e) => setPriority(e.target.value)}
         className={`p-3 text-base sm:text-lg rounded-md text-white focus:outline-none focus:ring-2
@@ -65,7 +62,6 @@ const TaskForm = ({ toggleForm, addTask }) => {
         </option>
       </select>
 
-      {/* Botones */}
       <div className="flex flex-col sm:flex-row gap-2 mt-2">
         <Button type="submit" color="green" text="Guardar" className="w-full" />
         <Button
