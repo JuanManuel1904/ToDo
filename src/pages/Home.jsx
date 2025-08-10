@@ -72,7 +72,8 @@ const Home = () => {
   }, [taskList, storageLoaded]);
 
   return (
-    <div className="bg-slate-800 min-h-screen flex flex-col px-4 sm:px-8 lg:px-12">
+    <div className="main-container bg-slate-800 min-h-screen flex flex-col px-4 sm:px-8 lg:px-12">
+      {/* PopUp info */}
       {popUp && (
         <PopUp
           task={infoModal}
@@ -86,7 +87,7 @@ const Home = () => {
       )}
 
       <header className="text-center mt-8">
-        <h1 className="text-gray-400 text-4xl sm:text-6xl lg:text-8xl font-semibold font-sans drop-shadow-lg">
+        <h1 className="text-gray-400 text-4xl sm:text-6xl lg:text-8xl font-semibold font-sans text-shadow-lg text-shadow-gray-800">
           Do It
         </h1>
         <h2 className="text-gray-200 text-base sm:text-lg">
@@ -97,13 +98,14 @@ const Home = () => {
       <div
         className={`${popUp ? 'blur-lg opacity-50' : ''} flex flex-col flex-grow`}
       >
+        {/* Botones */}
         <div className="gap-4 min-h-16 my-4">
           {!showForm &&
             (deleteSelection ? (
-              <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-4 font-bold text-white">
+              <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-4 text-2xl font-bold text-white">
                 <Button
                   color="rose"
-                  className="w-full sm:w-40"
+                  className="w-full sm:w-32"
                   text="Eliminar"
                   onClick={multipleDelete}
                 />
@@ -118,7 +120,7 @@ const Home = () => {
                 />
               </div>
             ) : (
-              <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-4 font-bold text-white">
+              <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-4 text-2xl font-bold text-white">
                 <Button
                   color="green"
                   className="w-full sm:w-auto"
@@ -139,6 +141,7 @@ const Home = () => {
         </div>
 
         <div className="flex flex-col lg:flex-row flex-grow gap-4">
+          {/* Lista de tareas */}
           <main className="w-full mx-auto space-y-6 py-4">
             <section className="bg-slate-700 p-4 sm:p-6 rounded-lg shadow-md h-full w-full">
               {taskList.length === 0 ? (
@@ -165,10 +168,21 @@ const Home = () => {
             </section>
           </main>
 
+          {/* Formulario */}
           {showForm && (
-            <aside className="w-full lg:w-1/3 py-4">
-              <TaskForm toggleForm={toggleForm} addTask={addTask} />
-            </aside>
+            <>
+              {/* Modal en móvil */}
+              <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4 lg:hidden">
+                <div className="bg-slate-800 rounded-lg p-4 w-full max-w-md">
+                  <TaskForm toggleForm={toggleForm} addTask={addTask} />
+                </div>
+              </div>
+
+              {/* Panel lateral en desktop */}
+              <div className="hidden lg:block w-full lg:w-1/3 py-4">
+                <TaskForm toggleForm={toggleForm} addTask={addTask} />
+              </div>
+            </>
           )}
         </div>
       </div>

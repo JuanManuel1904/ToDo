@@ -4,95 +4,77 @@ import Button from './Button';
 const TaskForm = ({ toggleForm, addTask }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState('');
-  const [color, setColor] = useState('');
+  const [priority, setPriority] = useState('Normal');
 
-  const eventColorValue = (color) => {
-    setColor(color.target.value);
-    setPriority(color.target.value);
-  };
-
-  const formSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const newTask = { title, description, priority };
-    addTask(newTask);
+    if (!title.trim()) return;
+    addTask({ title, description, priority });
     toggleForm();
-  };
-
-  const priorityColor = () => {
-    switch (color) {
-      case 'Urgente':
-        return 'bg-rose-500/90';
-      case 'Importante':
-        return 'bg-orange-500/90';
-      case 'Opcional':
-        return 'bg-green-500/90';
-      default:
-        return 'bg-slate-700';
-    }
+    setTitle('');
+    setDescription('');
+    setPriority('Normal');
   };
 
   return (
-    <form onSubmit={formSubmit} className="h-full w-full">
-      <div className="flex flex-col justify-end p-4 bg-slate-700 rounded-lg h-full gap-y-3 sm:gap-y-4">
-        {/* Campos */}
-        <div className="text-white flex flex-col text-lg sm:text-xl gap-y-3 sm:gap-y-4 h-full">
-          <input
-            type="text"
-            value={title}
-            maxLength={30}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Título"
-            className="border border-slate-500 rounded-lg min-h-[3rem] sm:min-h-[4rem] p-2 w-full"
-            required
-          />
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col gap-4 bg-slate-700 p-4 sm:p-6 rounded-lg shadow-lg w-full"
+    >
+      <h2 className="text-xl sm:text-2xl font-bold text-white text-center">
+        Nueva Tarea
+      </h2>
 
-          <textarea
-            maxLength={300}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Descripción"
-            className="border border-slate-500 rounded-lg min-h-[6rem] sm:min-h-[11rem] p-2 w-full resize-none"
-          />
+      {/* Título */}
+      <input
+        type="text"
+        placeholder="Título"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400"
+      />
 
-          <select
-            name="priority"
-            id="priority"
-            onChange={eventColorValue}
-            className={`border border-slate-500 rounded-lg min-h-[3rem] sm:min-h-[4rem] p-2 w-full ${priorityColor()}`}
-            required
-          >
-            <option value="" hidden>
-              Elige la prioridad
-            </option>
-            <option value="Urgente" className="bg-rose-500/90">
-              Urgente
-            </option>
-            <option value="Importante" className="bg-orange-500/90">
-              Importante
-            </option>
-            <option value="Opcional" className="bg-green-500/90">
-              Opcional
-            </option>
-          </select>
-        </div>
+      {/* Descripción */}
+      <textarea
+        placeholder="Descripción"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400 min-h-[6rem]"
+      />
 
-        {/* Botones */}
-        <div className="flex flex-col sm:flex-row justify-center gap-2 sm:gap-4 text-lg sm:text-xl font-bold text-white">
-          <Button
-            color="green"
-            text="Guardar"
-            type="submit"
-            className="w-full sm:w-auto"
-          />
-          <Button
-            color="rose"
-            text="Cancelar"
-            type="button"
-            onClick={toggleForm}
-            className="w-full sm:w-auto"
-          />
-        </div>
+      {/* Prioridad (colores y nombres originales) */}
+      <select
+        onChange={(e) => setPriority(e.target.value)}
+        className={`p-3 text-base sm:text-lg rounded-md text-white focus:outline-none focus:ring-2
+          ${
+            priority === 'Urgente'
+              ? 'bg-rose-500 focus:ring-rose-300'
+              : priority === 'Importante'
+                ? 'bg-orange-500 focus:ring-orange-300'
+                : 'bg-green-500 focus:ring-green-300'
+          }`}
+      >
+        <option value="Normal" className="bg-green-500 text-white">
+          Normal
+        </option>
+        <option value="Importante" className="bg-orange-500 text-white">
+          Importante
+        </option>
+        <option value="Urgente" className="bg-rose-500 text-white">
+          Urgente
+        </option>
+      </select>
+
+      {/* Botones */}
+      <div className="flex flex-col sm:flex-row gap-2 mt-2">
+        <Button type="submit" color="green" text="Guardar" className="w-full" />
+        <Button
+          type="button"
+          color="rose"
+          text="Cancelar"
+          onClick={toggleForm}
+          className="w-full"
+        />
       </div>
     </form>
   );
