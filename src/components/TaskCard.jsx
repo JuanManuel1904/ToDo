@@ -34,7 +34,7 @@ const TaskCard = ({
           {task.description}
         </p>
         <span
-          className={`mt-auto px-3 py-1 rounded-full text-xs sm:text-sm font-semibold 
+          className={`mt-auto self-end px-3 py-1 rounded-full text-xs sm:text-sm font-semibold 
                       w-full sm:w-1/2 text-center
                       ${
                         task.priority === 'Urgente'
