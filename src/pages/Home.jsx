@@ -18,11 +18,11 @@ const Home = () => {
   const toggleForm = () => setShowForm(!showForm);
   const toggleDeleteSelection = () => setDeleteSelection(!deleteSelection);
 
-  const addTaskDeleteList = (title) => {
-    if (deleteTaskList.includes(title)) {
-      setDeleteTaskList(deleteTaskList.filter((task) => task !== title));
+  const addTaskDeleteList = (id) => {
+    if (deleteTaskList.includes(id)) {
+      setDeleteTaskList(deleteTaskList.filter((task) => task !== id));
     } else {
-      setDeleteTaskList([...deleteTaskList, title]);
+      setDeleteTaskList([...deleteTaskList, id]);
     }
   };
 

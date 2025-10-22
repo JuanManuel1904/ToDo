@@ -15,8 +15,8 @@ const TaskCard = ({
       {deleteSelection && (
         <input
           type="checkbox"
-          checked={deleteTaskList.includes(task.title)}
-          onChange={() => addTaskDeleteList(task.title)}
+          checked={deleteTaskList.includes(task.id)}
+          onChange={() => addTaskDeleteList(task.id)}
           onClick={(e) => e.stopPropagation()}
           className="absolute top-3 left-3 w-4 h-4 sm:w-5 sm:h-5"
         />
