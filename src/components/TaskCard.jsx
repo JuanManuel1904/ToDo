@@ -15,8 +15,8 @@ const TaskCard = ({
       {deleteSelection && (
         <input
           type="checkbox"
-          checked={deleteTaskList.includes(task.title)}
-          onChange={() => addTaskDeleteList(task.title)}
+          checked={deleteTaskList.includes(task.id)}
+          onChange={() => addTaskDeleteList(task.id)}
           onClick={(e) => e.stopPropagation()}
           className="absolute top-3 left-3 w-4 h-4 sm:w-5 sm:h-5"
         />
@@ -34,7 +34,7 @@ const TaskCard = ({
           {task.description}
         </p>
         <span
-          className={`mt-auto px-3 py-1 rounded-full text-xs sm:text-sm font-semibold 
+          className={`mt-auto self-end px-3 py-1 rounded-full text-xs sm:text-sm font-semibold 
                       w-full sm:w-1/2 text-center
                       ${
                         task.priority === 'Urgente'

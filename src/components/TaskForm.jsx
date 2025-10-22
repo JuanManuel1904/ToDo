@@ -4,16 +4,17 @@ import Button from './Button';
 const TaskForm = ({ toggleForm, addTask }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [priority, setPriority] = useState('Normal');
+  const [priority, setPriority] = useState('');
 
   const handleSubmit = (e) => {
+    const id = new Date();
     e.preventDefault();
     if (!title.trim()) return;
-    addTask({ title, description, priority });
+    addTask({ title, description, priority, id });
     toggleForm();
     setTitle('');
     setDescription('');
-    setPriority('Normal');
+    setPriority('');
   };
 
   return (
@@ -30,17 +31,18 @@ const TaskForm = ({ toggleForm, addTask }) => {
         placeholder="Título"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400"
+        className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-slate-400"
       />
 
       <textarea
         placeholder="Descripción"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-slate-400 min-h-[6rem]"
+        className="p-3 text-base sm:text-lg rounded-md bg-slate-600 text-white placeholder-gray-400 focus:outline-none focus:ring-slate-400 min-h-[6rem]"
       />
 
       <select
+        value={priority}
         onChange={(e) => setPriority(e.target.value)}
         className={`p-3 text-base sm:text-lg rounded-md text-white focus:outline-none focus:ring-2
           ${
@@ -48,9 +50,14 @@ const TaskForm = ({ toggleForm, addTask }) => {
               ? 'bg-rose-500 focus:ring-rose-300'
               : priority === 'Importante'
                 ? 'bg-orange-500 focus:ring-orange-300'
-                : 'bg-green-500 focus:ring-green-300'
+                : priority === 'Normal'
+                  ? 'bg-green-500 focus:ring-green-300'
+                  : 'bg-slate-600 focus:ring-slate-500'
           }`}
       >
+        <option value="" hidden className="bg-slate-500 text-white">
+          Elige una opción
+        </option>
         <option value="Normal" className="bg-green-500 text-white">
           Normal
         </option>

@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import TaskForm from '../components/TaskForm';
 import Button from '../components/Button';
 import TaskCard from '../components/TaskCard';
-import PopUp from '../components/PopUp';
-
+import TaskInformation from '../components/TaskInformation';
 const Home = () => {
   const [taskList, setTaskList] = useState([]);
   const [showForm, setShowForm] = useState(false);
@@ -19,30 +18,34 @@ const Home = () => {
   const toggleForm = () => setShowForm(!showForm);
   const toggleDeleteSelection = () => setDeleteSelection(!deleteSelection);
 
-  const addTaskDeleteList = (title) => {
-    if (deleteTaskList.includes(title)) {
-      setDeleteTaskList(deleteTaskList.filter((task) => task !== title));
+  const addTaskDeleteList = (id) => {
+    if (deleteTaskList.includes(id)) {
+      setDeleteTaskList(deleteTaskList.filter((task) => task !== id));
     } else {
-      setDeleteTaskList([...deleteTaskList, title]);
+      setDeleteTaskList([...deleteTaskList, id]);
     }
   };
 
   const individualDelete = () => {
-    setTaskList(taskList.filter((task) => task.title !== infoModal.title));
+    setTaskList(taskList.filter((task) => task.id !== infoModal.id));
     setInfoModal(null);
     setPopUp(false);
   };
 
   const multipleDelete = () => {
-    setTaskList(
-      taskList.filter((task) => !deleteTaskList.includes(task.title))
-    );
+    setTaskList(taskList.filter((task) => !deleteTaskList.includes(task.id)));
     setDeleteTaskList([]);
     toggleDeleteSelection();
   };
 
   const addTask = (newtask) => {
     setTaskList([...taskList, newtask]);
+  };
+
+  const updateTask = (updated) => {
+    setTaskList(
+      taskList.map((task) => (task.id === updated.id ? updated : task))
+    );
   };
 
   useEffect(() => {
@@ -73,16 +76,15 @@ const Home = () => {
 
   return (
     <div className="main-container bg-slate-800 min-h-screen flex flex-col px-4 sm:px-8 lg:px-12">
-      {/* PopUp info */}
       {popUp && (
-        <PopUp
+        <TaskInformation
           task={infoModal}
-          open={popUp}
           onDelete={individualDelete}
           onClose={() => {
             setPopUp(false);
             setInfoModal(null);
           }}
+          onSave={updateTask}
         />
       )}
 
@@ -104,13 +106,13 @@ const Home = () => {
             (deleteSelection ? (
               <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-4 text-2xl font-bold text-white">
                 <Button
-                  color="rose"
+                  color="blue"
                   className="w-full sm:w-32"
-                  text="Eliminar"
+                  text="Completar"
                   onClick={multipleDelete}
                 />
                 <Button
-                  color="blue"
+                  color="rose"
                   className="w-full sm:w-auto"
                   text="Cancelar"
                   onClick={() => {
@@ -128,9 +130,9 @@ const Home = () => {
                   onClick={toggleForm}
                 />
                 <Button
-                  color="rose"
+                  color="blue"
                   className="w-full sm:w-auto"
-                  text="Eliminar"
+                  text="Completar"
                   onClick={() => {
                     toggleDeleteSelection();
                     setDeleteTaskList([]);
@@ -151,11 +153,12 @@ const Home = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 text-white">
                   {taskList.map((task) => (
                     <TaskCard
-                      key={task.title}
+                      key={task.id}
                       task={task}
                       deleteSelection={deleteSelection}
                       deleteTaskList={deleteTaskList}
                       addTaskDeleteList={addTaskDeleteList}
+                      onSave={() => updateTask(updated)}
                       onClick={() => {
                         setInfoModal(task);
                         setPopUp(true);
